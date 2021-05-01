@@ -1,0 +1,50 @@
+<div class="app-body" >
+  <main class="main d-flex align-items-center bg" >
+    <div class="container" >
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <form (keyup.enter)="save()">
+                  <h3>{{ 'Post a status' }}</h3>
+                  <div class="input-group mb-3">
+                    <textarea  class="form-control" name="description"
+                           [(ngModel)]="post.description" #description="ngModel" autocomplete="description" required>
+                    </textarea>
+                  </div>
+
+                  <label>Choose privacy:</label>
+                  <br/>
+                  <label class="form-check-inline">
+                    <input [defaultChecked]="post.isPublic" class="form-check-input" type="radio" name="mode" [value]="true" [(ngModel)]="post.isPublic">
+                    <span>Public</span>
+                  </label>
+                  <label class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="mode" [value]="false" [(ngModel)]="post.isPublic">
+                    <span>Private</span>
+                  </label>
+
+                  <div class="input-group mb-3">
+                    <select [(ngModel)]="post.placeId" name="place">
+                      <option value="0">Select a place</option>
+                      <option [value]="place.id" *ngFor="let place of places">
+                        {{place.name}}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-6">
+                      <button type="button" class="btn btn-primary px-4" (click)="save()">{{ 'Post' }}</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
